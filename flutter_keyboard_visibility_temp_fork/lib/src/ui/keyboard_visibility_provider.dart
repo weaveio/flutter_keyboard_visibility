@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_keyboard_visibility_temp_fork/src/keyboard_visibility_controller.dart';
+import 'package:flutter_keyboard_visibility/src/keyboard_visibility_controller.dart';
 
 /// Widget that reports to its descendants whether or not
 /// the keyboard is currently visible.
@@ -51,7 +51,8 @@ class KeyboardVisibilityProvider extends StatefulWidget {
   static bool isKeyboardVisible(BuildContext context) {
     return context
         .dependOnInheritedWidgetOfExactType<
-            _KeyboardVisibilityInheritedWidget>()!
+          _KeyboardVisibilityInheritedWidget
+        >()!
         .isKeyboardVisible;
   }
 
@@ -69,8 +70,9 @@ class _KeyboardVisibilityProviderState
   void initState() {
     super.initState();
     _isKeyboardVisible = widget._controller.isVisible;
-    _subscription =
-        widget._controller.onChange.listen(_onKeyboardVisibilityChange);
+    _subscription = widget._controller.onChange.listen(
+      _onKeyboardVisibilityChange,
+    );
   }
 
   void _onKeyboardVisibilityChange(bool isKeyboardVisible) {
